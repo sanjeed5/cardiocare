@@ -21,7 +21,7 @@
 </head>
 
 <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-light border-bottom shadow-sm">
-        <h4 class="my-0 mr-md-auto font-weight-normal">Cardiocare</h4> 
+        <h4 class="my-0 mr-md-auto font-weight-normal">CardioCare</h4> 
         <nav class="my-2 my-md-0 mr-md-3">
         </nav>
         <!-- <a class="btn btn-outline-primary" href="#">Login</a> -->
@@ -31,13 +31,13 @@
     <form action="{{ url_for('main') }}" method="POST">
             <fieldset>
                     <legend>Enter values:</legend>
-                    BP:
+                    BP(mmHg):
                     <input name="bp" type="number" step="0.01" required>
                     <br>
-                    <br> Tobaco:
+                    <br> Tobacco:
                     <input name="tobaco" type="number" step="0.01" required>
                     <br>
-                    <br> Cholestrol:
+                    <br> Cholestrol(mg/dL):
                     <input name="cholestrol" type="number" step="0.01" required>
                     <br>
                     <br> Adiposity:
@@ -73,8 +73,8 @@
             {% endfor %}
             <br> -->
             <!-- WE DONT NEED TO PRINT INPUT AGAIN RIGHT? -->
-            <br> Predicted heart disease probability:
-               <p style="font-size:50px">{{result}}</p>
+            <br> Probability of cardio-vascular disease:
+               <p style="font-size:50px">{{ result }}</p>
         {% endif %}
     </div>
 </div>
