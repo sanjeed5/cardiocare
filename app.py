@@ -6,6 +6,9 @@ import pandas as pd
 with open(f'model/weights.pkl', 'rb') as f:
     model = pickle.load(f)
 
+with open(f'model/scaler.pkl', 'rb') as g:
+    scaler = pickle.load(g)
+
 app = flask.Flask(__name__, template_folder = 'templates')
 
 @app.route('/', methods=['GET', 'POST'])
@@ -23,24 +26,25 @@ def main():
         obesity = flask.request.form['obesity']
         alcohol = flask.request.form['alcohol']
         age = flask.request.form['age'] 
-        
-        input_variables = pd.DataFrame([[bp, tobaco, cholestrol, adiposity, fam_hist, type_a_beh, obesity, alcohol, age]], 
-                                        columns=['bp', 'tobaco', 'cholestrol', 'adiposity', 'fam_hist', 'type_a_beh', 'obesity', 'alcohol', 'age'], 
-                                        dtype=float)
 
+        input_variables = pd.DataFrame([[bp, tobaco, cholestrol, adiposity, fam_hist, type_a_beh, obesity, alcohol, age]], 
+                                        columns = (['bp', 'tobaco', 'cholestrol', 'adiposity', 'fam_hist', 'type_a_beh',
+                                        'obesity', 'alcohol', 'age']), dtype = float)
+
+        input_variables = scaler.transform([input_variables])[0]
         prediction = model.predict(input_variables)[0]
 
         return flask.render_template('main.html',
-                                     original_input={'Bp':bp,
-                                                    'Tobaco':tobaco,
-                                                    'Cholestrol':cholestrol,
-                                                    'Adiposity':adiposity,
-                                                    'Fam_hist':fam_hist,
-                                                    'Type_a_beh':type_a_beh,
-                                                    'Obesity':obesity,
-                                                    'Alcohol':alcohol,
-                                                    'Age':age},
-                                     result=prediction,
+                                     original_input={'Bp'       : bp,
+                                                    'Tobaco'    : tobaco,
+                                                    'Cholestrol': cholestrol,
+                                                    'Adiposity' : adiposity,
+                                                    'Fam_hist'  : fam_hist,
+                                                    'Type_a_beh': type_a_beh,
+                                                    'Obesity'   : obesity,
+                                                    'Alcohol'   : alcohol,
+                                                    'Age'       : age},
+                                     result = prediction
                                      )
 
 if __name__ == '__main__':
