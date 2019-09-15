@@ -24,7 +24,7 @@
         <h4 class="my-0 mr-md-auto font-weight-normal">Cardiocare</h4> 
         <nav class="my-2 my-md-0 mr-md-3">
         </nav>
-        <a class="btn btn-outline-primary" href="#">Login</a>
+        <!-- <a class="btn btn-outline-primary" href="#">Login</a> -->
       </div>
 
 <div class="container">
@@ -66,12 +66,13 @@
 <br>
 <div class="container">
     <div class="result">
-        <div>Result:</div>
+        <div><h4>Result:</h4></div>
         {% if result %}
             <!-- {% for variable, value in original_input.items() %}
                 <b>{{ variable }}</b> : {{ value }}
             {% endfor %}
             <br> -->
+            <!-- WE DONT NEED TO PRINT INPUT AGAIN RIGHT? -->
             <br> Predicted Jonathan's size:
                <p style="font-size:50px">{{ result }}</p>
         {% endif %}
