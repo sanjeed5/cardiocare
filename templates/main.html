@@ -1,12 +1,66 @@
 <!doctype html>
 
 <html>
+<style>
+    form {
+        margin: auto;
+        width: 35%;
+    }
+    .result {
+        margin: auto;
+        width: 35%;
+        border: 1px solid #ccc;
+    }
+</style>
+
 <head>
-
 <title>CardioCare</title>
-
 </head>
-
-<h1>Hello world.</h1>
+bp, tobaco, cholestrol, adiposity, fam_hist, type_a_beh, obesity, alcohol, age
+<form action="{{ url_for('main') }}" method="POST">
+    <fieldset>
+            <legend>Input values:</legend>
+            BP:
+            <input name="bp" type="number" required>
+            <br>
+            <br> Tobaco:
+            <input name="tobaco" type="number" required>
+            <br>
+            <br> Cholestrol:
+            <input name="cholestrol" type="number" required>
+            <br>
+            <br> Adiposity:
+            <input name="adiposity" type="number" required>
+            <br>
+            <br> Family history:
+            <input name="fam_hist" type="number" required>
+            <br>
+            <br> Type A behaviour:
+            <input name="type_a_beh" type="number" required>
+            <br>
+            <br> Obesity:
+            <input name="obesity" type="number" required>
+            <br>
+            <br> Alcohol:
+            <input name="alcohol" type="number" required>
+            <br>
+            <br> Age:
+            <input name="age" type="number" required>
+            <br>
+            <br> 
+            <input type="submit">
+    </fieldset>
+</form>
+<br>
+<div class="result" align="center">
+    {% if result %}
+        {% for variable, value in original_input.items() %}
+            <b>{{ variable }}</b> : {{ value }}
+        {% endfor %}
+        <br>
+        <br> Predicted number of bikes in use:
+           <p style="font-size:50px">{{ result }}</p>
+    {% endif %}
+</div>
 
 </html>
