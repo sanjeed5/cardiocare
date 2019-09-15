@@ -5,11 +5,11 @@
     form {
         margin: auto;
         width: 35%;
+        font-size: 80%
     }
     .result {
         margin: auto;
         width: 35%;
-        border: 1px solid #ccc;
     }
 </style>
 
@@ -19,54 +19,41 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <title>CardioCare</title>
 </head>
-<nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
-        <a class="navbar-brand" href="#">Cardiocare</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <!-- <div class="collapse navbar-collapse" id="navbarCollapse">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Link</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-            </li>
-          </ul>
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Log In</button>
-          </form>
-        </div> -->
-      </nav>
+
+<div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-light border-bottom shadow-sm">
+        <h4 class="my-0 mr-md-auto font-weight-normal">Cardiocare</h4> 
+        <nav class="my-2 my-md-0 mr-md-3">
+        </nav>
+        <a class="btn btn-outline-primary" href="#">Login</a>
+      </div>
+
 <div class="container">
     <form action="{{ url_for('main') }}" method="POST">
             <fieldset>
-                    <legend>Input values:</legend>
+                    <legend>Enter values:</legend>
                     BP:
-                    <input name="bp" type="number" required>
+                    <input name="bp" type="number" step="0.01" required>
                     <br>
                     <br> Tobaco:
-                    <input name="tobaco" type="number" required>
+                    <input name="tobaco" type="number" step="0.01" required>
                     <br>
                     <br> Cholestrol:
-                    <input name="cholestrol" type="number" required>
+                    <input name="cholestrol" type="number" step="0.01" required>
                     <br>
                     <br> Adiposity:
-                    <input name="adiposity" type="number" required>
+                    <input name="adiposity" type="number" step="0.01" required>
                     <br>
                     <br> Family history:
                     <input name="fam_hist" type="number" required>
                     <br>
                     <br> Type A behaviour:
-                    <input name="type_a_beh" type="number" required>
+                    <input name="type_a_beh" type="number" step="0.01" required>
                     <br>
                     <br> Obesity:
-                    <input name="obesity" type="number" required>
+                    <input name="obesity" type="number" step="0.01" required>
                     <br>
                     <br> Alcohol:
-                    <input name="alcohol" type="number" required>
+                    <input name="alcohol" type="number" step="0.01" required>
                     <br>
                     <br> Age:
                     <input name="age" type="number" required>
@@ -78,13 +65,14 @@
 </div>
 <br>
 <div class="container">
-    <div class="result" align="center">
+    <div class="result">
+        <div>Result:</div>
         {% if result %}
-            {% for variable, value in original_input.items() %}
+            <!-- {% for variable, value in original_input.items() %}
                 <b>{{ variable }}</b> : {{ value }}
             {% endfor %}
-            <br>
-            <br> Predicted number of bikes in use:
+            <br> -->
+            <br> Predicted Jonathan's size:
                <p style="font-size:50px">{{ result }}</p>
         {% endif %}
     </div>
