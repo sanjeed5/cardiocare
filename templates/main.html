@@ -14,52 +14,59 @@
 </style>
 
 <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <title>CardioCare</title>
 </head>
-<form action="{{ url_for('main') }}" method="POST">
-    <fieldset>
-            <legend>Input values:</legend>
-            BP:
-            <input name="bp" type="number" required>
-            <br>
-            <br> Tobaco:
-            <input name="tobaco" type="number" required>
-            <br>
-            <br> Cholestrol:
-            <input name="cholestrol" type="number" required>
-            <br>
-            <br> Adiposity:
-            <input name="adiposity" type="number" required>
-            <br>
-            <br> Family history:
-            <input name="fam_hist" type="number" required>
-            <br>
-            <br> Type A behaviour:
-            <input name="type_a_beh" type="number" required>
-            <br>
-            <br> Obesity:
-            <input name="obesity" type="number" required>
-            <br>
-            <br> Alcohol:
-            <input name="alcohol" type="number" required>
-            <br>
-            <br> Age:
-            <input name="age" type="number" required>
-            <br>
-            <br> 
-            <input type="submit">
-    </fieldset>
-</form>
+<div class="container">
+    <form action="{{ url_for('main') }}" method="POST">
+            <fieldset>
+                    <legend>Input values:</legend>
+                    BP:
+                    <input name="bp" type="number" required>
+                    <br>
+                    <br> Tobaco:
+                    <input name="tobaco" type="number" required>
+                    <br>
+                    <br> Cholestrol:
+                    <input name="cholestrol" type="number" required>
+                    <br>
+                    <br> Adiposity:
+                    <input name="adiposity" type="number" required>
+                    <br>
+                    <br> Family history:
+                    <input name="fam_hist" type="number" required>
+                    <br>
+                    <br> Type A behaviour:
+                    <input name="type_a_beh" type="number" required>
+                    <br>
+                    <br> Obesity:
+                    <input name="obesity" type="number" required>
+                    <br>
+                    <br> Alcohol:
+                    <input name="alcohol" type="number" required>
+                    <br>
+                    <br> Age:
+                    <input name="age" type="number" required>
+                    <br>
+                    <br> 
+                    <input type="submit">
+            </fieldset>
+        </form>        
+</div>
 <br>
-<div class="result" align="center">
-    {% if result %}
-        {% for variable, value in original_input.items() %}
-            <b>{{ variable }}</b> : {{ value }}
-        {% endfor %}
-        <br>
-        <br> Predicted number of bikes in use:
-           <p style="font-size:50px">{{ result }}</p>
-    {% endif %}
+<div class="container">
+    <div class="result" align="center">
+        {% if result %}
+            {% for variable, value in original_input.items() %}
+                <b>{{ variable }}</b> : {{ value }}
+            {% endfor %}
+            <br>
+            <br> Predicted number of bikes in use:
+               <p style="font-size:50px">{{ result }}</p>
+        {% endif %}
+    </div>
 </div>
 
 </html>
