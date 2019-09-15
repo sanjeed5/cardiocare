@@ -1,5 +1,6 @@
 import flask
 import pickle
+import pandas as pd
 
 # Use pickle to load in the pre-trained model.
 with open(f'model/weights.pkl', 'rb') as f:
