@@ -16,7 +16,7 @@ We tried to use the Intel Distribution for Python. While we researched, we under
 We aspire to collaborate with a cardiology-based hospital or medical institute, use their larger database and datasets and utilize Intel Optimization for Tensorflow to create a much more accurate model using neural networks. This would definitely help us in widening the capability of our model to predict disease and disease risk of the patient along with the expertise of the cardiologist.
 
 
-### Acces the website [cardiocare.herokuapp.com](cardiocare.herokuapp.com)
+### Acces the website [cardiocare.herokuapp.com](http://cardiocare.herokuapp.com)
 
 ### Or,
 
