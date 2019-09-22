@@ -11,7 +11,7 @@ Being undergraduates who would be specializing in Biomedical Design in our dual 
 - positively help to warn patients of any impending heart disease complications, well in advance. 
 - help control the risk factors for possible cardiovascular diseases.
 
-We tried to use the Intel Distribution for Python. While we researched, we understood that it is very fast compared to vanilla Python. We couldn't implement it in the prototype due to time constraints. But we have decided that for the final product we will definitely use Intel Distribution for Python and Intel Optimization for Tensorflow to get better results.
+The deployed app uses Intel Distribution for Python and the optimized scikit-learn and numpy packages. We hope to explore more Intel products for data analytics like the DAAL library for the final product. 
 
 We aspire to collaborate with a cardiology-based hospital or medical institute, use their larger database and datasets and utilize Intel Optimization for Tensorflow to create a much more accurate model using neural networks. This would definitely help us in widening the capability of our model to predict disease and disease risk of the patient along with the expertise of the cardiologist.
 
