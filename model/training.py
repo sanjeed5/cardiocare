@@ -1,6 +1,5 @@
-import pandas as pd
-import pandas_profiling as pp
 import numpy as np
+from numpy import genfromtxt
 import pickle
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import MinMaxScaler
@@ -22,20 +21,14 @@ def accuracy(y_true, y_pred):
     return numerator / N
 
 
-def training(csv_file, final_model_file_name):
+def training_np(csv_file, final_model_file_name):
 
-    df = pd.read_csv(csv_file)
-    df.columns = (['bp', 'tobaco', 'cholestrol', 'adiposity', 'fam_hist',
-                   'type_a_beh', 'obesity', 'alcohol', 'age', 'Class'])
+    data = genfromtxt(csv_file, delimiter = ',')
 
-    x = df.drop('Class', axis = 1)
-    y = df['Class']
+    x = data[1:, :-1]
+    y = data[1:, -1]
 
-    y = y.to_numpy()
-    y = np.array([1 if i == 1 else 0 for i in y])
-
-    x_train, x_test, y_train, y_test = train_test_split(x, y,
-                                            test_size = 0.2, random_state = 42)
+    x_train, x_test, y_train, y_test = train_test_split(x, y, test_size = 0.2, random_state = 42)
 
     scaler = MinMaxScaler()
     scaler.fit_transform(x_train)
@@ -56,4 +49,7 @@ def training(csv_file, final_model_file_name):
     return results_dict
 
 
+if __name__ == '__main__':
 
+    dicct = training_np(r'C:\Users\user\cardiocare\model\cardio.csv', 'weight_new.pkl')
+    print(dicct)
