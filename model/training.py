@@ -4,7 +4,7 @@ import numpy as np
 import pickle
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import MinMaxScaler
-from sklearn.ensemble import RandomForestClassifier
+from daal4py.sklearn.ensemble import RandomForestClassifier
 
 
 def accuracy(y_true, y_pred):
