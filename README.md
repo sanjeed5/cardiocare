@@ -32,7 +32,7 @@ References:
 
 
 
-### Acces the website [cardiocare.herokuapp.com](http://cardiocare.herokuapp.com)
+### Access the website [cardiocare.herokuapp.com](http://cardiocare.herokuapp.com)
 
 ### Or,
 
