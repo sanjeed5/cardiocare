@@ -41,10 +41,10 @@ def main():
         pred_probab = model.predict_proba(input_vector)[0][1]
 
         if pred_probab < normal_threshold:
-            result = 'Normal'
+            result = 'Low'
 
         elif pred_probab <= critical_threshold and pred_probab >= normal_threshold:
-            result = 'Possibility of heart disease'
+            result = 'Possibility of CVD'
 
         else:
             result = 'Critical'
