@@ -1,16 +1,10 @@
-/*--
-Author: Colorlib
-Author URL: https://colorlib.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
---*/
-/*-- reset --*/
 html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, dl, dt, dd, ol, nav ul, nav li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
     margin: 0;
     padding: 0;
     border: 0;
     font-size: 100%;
     font: inherit;
+    font-weight: bold;
     vertical-align: baseline;
   }
   
@@ -101,7 +95,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
   nav.horizontal ul li {
     display: inline-block;
   }
-  
+  gradient
   /* horizontal menu */
   img {
     max-width: 100%;
@@ -109,15 +103,17 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
   
   /*-- end reset --*/
   body {
-    background: #76b852;
-    /* fallback for old browsers */
+    /* background: #76b852;
     background: -webkit-linear-gradient(to top, #76b852, #8DC26F);
     background: -moz-linear-gradient(to top, #76b852, #8DC26F);
     background: -o-linear-gradient(to top, #76b852, #8DC26F);
-    background: linear-gradient(to top, #76b852, #8DC26F);
+    background: linear-gradient(to top, #76b852, #8DC26F); */
     background-size: cover;
     background-attachment: fixed;
     font-family: 'Roboto', sans-serif;
+    background-color: #3399FF;
+    /* background-image: linear-gradient(0deg, #3355FF , #8095FF ); */
+
   }
   
   h1 {
@@ -126,7 +122,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
     color: #fff;
     font-weight: 100;
     text-transform: capitalize;
-    letter-spacing: 4px;
+    /* letter-spacing: 4px; */
     font-family: 'Roboto', sans-serif;
   }
   
@@ -143,7 +139,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
   }
   
   .agileits-top {
-    padding: 3em;
+    padding: 1.5em;
   }
   
   input[type="text"], input[type="email"], input[type="password"] {
@@ -154,7 +150,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
     display: block;
     border: none;
     padding: 0.8em;
-    border: solid 1px rgba(255, 255, 255, 0.37);
+    border: solid 2px rgba(255, 255, 255, 0.37);
     -webkit-transition: all 0.3s cubic-bezier(0.64, 0.09, 0.08, 1);
     transition: all 0.3s cubic-bezier(0.64, 0.09, 0.08, 1);
     background: -webkit-linear-gradient(top, rgba(255, 255, 255, 0) 96%, #fff 4%);
@@ -217,7 +213,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
     -webkit-appearance: none;
     width: 100%;
     margin: 2em 0;
-    letter-spacing: 4px;
+    /* letter-spacing: 4px; */
   }
   
   input[type="submit"]:hover {
@@ -683,7 +679,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
   
     input[type="submit"] {
       margin: 2em 0 1.5em;
-      letter-spacing: 3px;
+      /* letter-spacing: 3px; */
     }
   
     input[type="submit"] {
