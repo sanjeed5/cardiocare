@@ -44,7 +44,7 @@ def main():
             result = 'Normal'
 
         elif pred_probab <= critical_threshold and pred_probab >= normal_threshold:
-            result = 'Take care'
+            result = 'Possibility of heart disease'
 
         else:
             result = 'Critical'
