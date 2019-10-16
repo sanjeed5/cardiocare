@@ -11,7 +11,7 @@ Being undergraduates who would be specializing in Biomedical Design in our dual 
 -positively help to warn patients of any impending heart disease complications, well in advance. 
 -help control the risk factors for possible cardiovascular diseases.
 
-The deployed app prototype uses Intel® Distribution for Python, Intel numpy and Intel scikit-learn packages. From our research, we understood that these are much faster than the packages we previously used. We hope to explore Intel® Data Analytics Acceleration Library and daal4py package for the final product. We also plan to use Intel® Optimization for TensorFlow in the final product.
+The deployed app prototype uses Intel® Distribution for Python, Intel numpy and Intel scikit-learn packages. From our research, we understood that these are much faster than the packages we previously used. The speed boost was achieved using Intel® Data Analytics Acceleration Library through daal4py package. We also plan to use Intel® Optimization for TensorFlow in the final product.
 
 We aspire to collaborate with a cardiology-based hospital or medical institute, use their larger database and datasets and utilize Intel® Optimization for Tensorflow to create a much more accurate model using deep neural networks. This would help us in widening the capability of our model to predict disease and disease risk of the patient along with the expertise of the cardiologist.
 
