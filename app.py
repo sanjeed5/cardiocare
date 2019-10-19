@@ -1,7 +1,7 @@
 import flask
 import pickle
 import pandas as pd
-import numpy as np
+from helper_modules import get_report
 
 # Use pickle to load pre-trained model, data preparation pipeline, probability threshold
 with open(f'model/final_model.pkl', 'rb') as f:
@@ -15,6 +15,12 @@ with open(f'model/normal_threshold.pkl', 'rb') as h:
 
 with open(f'model/critical_threshold.pkl', 'rb') as i:
     critical_threshold = pickle.load(i)
+
+with open(f'model/feature_importances.pkl', 'rb') as j:
+    feature_importances = pickle.load(j)
+
+with open(f'model/safe_limits.pkl', 'rb') as k:
+    safe_limits = pickle.load(k)
 
 app = flask.Flask(__name__, template_folder = 'templates')
 
@@ -37,17 +43,30 @@ def main():
         input_vector = pd.DataFrame([[bp, tobacco, cholestrol, adiposity, fam_hist, type_a_beh, obesity, alcohol, age]],
                        columns = ['sbp', 'tobacco', 'ldl',	'adiposity', 'famhist',	'typea', 'obesity',	'alcohol', 'age'], dtype=float)
 
-        input_vector = data_prep_pipeline.transform(input_vector)
-        pred_probab = model.predict_proba(input_vector)[0][1]
+        input_vector_prep = data_prep_pipeline.transform(input_vector)
+        pred_probab = model.predict_proba(input_vector_prep)[0][1]
 
         if pred_probab < normal_threshold:
             result = 'Low'
 
         elif pred_probab <= critical_threshold and pred_probab >= normal_threshold:
-            result = 'Possibility of CVD'
+
+            max_impact_feature, new_value = get_report(model, data_prep_pipeline, input_vector, feature_importances, safe_limits)
+            input_vector[max_impact_feature] = new_value
+            input_vector_prep = data_prep_pipeline.transform(input_vector)
+            new_probab = model.predict_proba(input_vector_prep)[0][1]
+            perc_improvement = round((pred_probab - new_probab) / pred_probab, 2)
+            result = 'Possibility of CVD -> ' + str(round(pred_probab, 2))   + '->' + str(max_impact_feature) + '->' + str(perc_improvement)
 
         else:
-            result = 'Critical'
+
+            max_impact_feature, new_value = get_report(model, data_prep_pipeline, input_vector, feature_importances, safe_limits)
+            input_vector[max_impact_feature] = new_value
+            input_vector_prep = data_prep_pipeline.transform(input_vector)
+            new_probab = model.predict_proba(input_vector_prep)[0][1]
+            perc_improvement = round((pred_probab - new_probab) / pred_probab, 2)
+
+            result = 'Critical -> ' + str(round(pred_probab, 2)) + '->' + str(max_impact_feature) + '->' + str(perc_improvement)
 
         return flask.render_template('main.html',
                                      original_input={'Bp':bp,
