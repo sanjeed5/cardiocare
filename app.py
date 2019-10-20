@@ -13,9 +13,6 @@ with open(f'model/data_prep_pipeline.pkl', 'rb') as g:
 with open(f'model/normal_threshold.pkl', 'rb') as h:
     normal_threshold = pickle.load(h)
 
-with open(f'model/critical_threshold.pkl', 'rb') as i:
-    critical_threshold = pickle.load(i)
-
 with open(f'model/feature_importances.pkl', 'rb') as j:
     feature_importances = pickle.load(j)
 
@@ -49,11 +46,8 @@ def main():
         if pred_probab < normal_threshold:
             result = 'Low risk of CVD'
 
-        elif pred_probab <= critical_threshold and pred_probab >= normal_threshold:
-            result = get_report(2, model, data_prep_pipeline, input_vector, feature_importances, safe_limits, pred_probab)
-
         else:
-            result = get_report(3, model, data_prep_pipeline, input_vector, feature_importances, safe_limits, pred_probab)
+            result = get_report(model, data_prep_pipeline, input_vector, feature_importances, safe_limits, pred_probab)
 
         return flask.render_template('main.html',
                                      original_input={'Bp':bp,
