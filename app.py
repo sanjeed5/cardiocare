@@ -1,7 +1,7 @@
 import flask
 import pickle
 import pandas as pd
-import numpy as np
+from helper_modules import get_report
 
 # Use pickle to load pre-trained model, data preparation pipeline, probability threshold
 with open(f'model/final_model.pkl', 'rb') as f:
@@ -13,8 +13,11 @@ with open(f'model/data_prep_pipeline.pkl', 'rb') as g:
 with open(f'model/normal_threshold.pkl', 'rb') as h:
     normal_threshold = pickle.load(h)
 
-with open(f'model/critical_threshold.pkl', 'rb') as i:
-    critical_threshold = pickle.load(i)
+with open(f'model/feature_importances.pkl', 'rb') as j:
+    feature_importances = pickle.load(j)
+
+with open(f'model/safe_limits.pkl', 'rb') as k:
+    safe_limits = pickle.load(k)
 
 app = flask.Flask(__name__, template_folder = 'templates')
 
@@ -37,17 +40,14 @@ def main():
         input_vector = pd.DataFrame([[bp, tobacco, cholestrol, adiposity, fam_hist, type_a_beh, obesity, alcohol, age]],
                        columns = ['sbp', 'tobacco', 'ldl',	'adiposity', 'famhist',	'typea', 'obesity',	'alcohol', 'age'], dtype=float)
 
-        input_vector = data_prep_pipeline.transform(input_vector)
-        pred_probab = model.predict_proba(input_vector)[0][1]
+        input_vector_prep = data_prep_pipeline.transform(input_vector)
+        pred_probab = model.predict_proba(input_vector_prep)[0][1]
 
         if pred_probab < normal_threshold:
-            result = 'Low'
-
-        elif pred_probab <= critical_threshold and pred_probab >= normal_threshold:
-            result = 'Possibility of CVD'
+            result = 'Low risk of CVD'
 
         else:
-            result = 'Critical'
+            result = get_report(model, data_prep_pipeline, input_vector, feature_importances, safe_limits, pred_probab)
 
         return flask.render_template('main.html',
                                      original_input={'Bp':bp,
