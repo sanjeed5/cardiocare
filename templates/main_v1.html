@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Cardiocare</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+<link href="//fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i" rel="stylesheet">
+</head>
+<body>
+	<div class="main-w3layouts wrapper">
+		<div class="main-agileinfo">
+			<div class="agileits-top">
+				<h1>CardioCare</h1>
+				<br><br>
+				<form action="{{ url_for('main') }}" method="POST">
+					<input class="text" type="text" name="bp" placeholder="BP (mmHg)" required="" step="0.01">
+					<input class="text" type="text" name="tobacco" placeholder="Tobacco" required="" step="0.01">
+					<input class="text" type="text" name="cholestrol" placeholder="Cholestrol (mg/dL)" required="" step="0.01">
+					<input class="text" type="text" name="adiposity" placeholder="Adiposity" required="" step="0.01">
+					<input class="text" type="text" name="fam_hist" placeholder="Family history" required="">
+					<input class="text" type="text" name="type_a_beh" placeholder="Type A behaviour" required="" step="0.01">
+					<input class="text" type="text" name="obesity" placeholder="Obesity" required="" step="0.01">
+					<input class="text" type="text" name="alcohol" placeholder="Alcohol" required="" step="0.01">
+					<input class="text" type="text" name="age" placeholder="Age" required="">
+					<input type="submit" value="Submit for analysis">
+				</form>
+				<div>
+					<div><p>CVD Risk:</p></div>
+					{% if result %}
+						<br>
+						<p style="font-size: 1.5em; font-weight: 500; letter-spacing: 2px;">{{ result }}</p>
+					{% endif %}
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
