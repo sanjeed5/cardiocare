@@ -47,26 +47,13 @@ def main():
         pred_probab = model.predict_proba(input_vector_prep)[0][1]
 
         if pred_probab < normal_threshold:
-            result = 'Low'
+            result = 'Low risk of CVD'
 
         elif pred_probab <= critical_threshold and pred_probab >= normal_threshold:
-
-            max_impact_feature, new_value = get_report(model, data_prep_pipeline, input_vector, feature_importances, safe_limits)
-            input_vector[max_impact_feature] = new_value
-            input_vector_prep = data_prep_pipeline.transform(input_vector)
-            new_probab = model.predict_proba(input_vector_prep)[0][1]
-            perc_improvement = round((pred_probab - new_probab) / pred_probab, 2)
-            result = 'Possibility of CVD -> ' + str(round(pred_probab, 2))   + '->' + str(max_impact_feature) + '->' + str(perc_improvement)
+            result = get_report(2, model, data_prep_pipeline, input_vector, feature_importances, safe_limits, pred_probab)
 
         else:
-
-            max_impact_feature, new_value = get_report(model, data_prep_pipeline, input_vector, feature_importances, safe_limits)
-            input_vector[max_impact_feature] = new_value
-            input_vector_prep = data_prep_pipeline.transform(input_vector)
-            new_probab = model.predict_proba(input_vector_prep)[0][1]
-            perc_improvement = round((pred_probab - new_probab) / pred_probab, 2)
-
-            result = 'Critical -> ' + str(round(pred_probab, 2)) + '->' + str(max_impact_feature) + '->' + str(perc_improvement)
+            result = get_report(3, model, data_prep_pipeline, input_vector, feature_importances, safe_limits, pred_probab)
 
         return flask.render_template('main.html',
                                      original_input={'Bp':bp,
